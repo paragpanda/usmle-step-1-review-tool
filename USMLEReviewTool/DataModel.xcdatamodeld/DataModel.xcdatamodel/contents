@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="StudySessionEntity" representedClassName="StudySessionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="correctAnswers" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sessionType" optional="YES" attributeType="String"/>
+        <attribute name="totalQuestions" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="attempts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QuestionAttemptEntity" inverseName="session" inverseEntity="QuestionAttemptEntity"/>
+    </entity>
+    <entity name="QuestionAttemptEntity" representedClassName="QuestionAttemptEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="isCorrect" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="questionId" optional="YES" attributeType="String"/>
+        <attribute name="selectedAnswerIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StudySessionEntity" inverseName="attempts" inverseEntity="StudySessionEntity"/>
+    </entity>
+    <entity name="UserProgressEntity" representedClassName="UserProgressEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="correctAnswers" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastStudied" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalAttempts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

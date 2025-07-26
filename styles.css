@@ -1,0 +1,449 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #f2f2f7;
+    color: #000;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* App container */
+#app {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Screen management */
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Container */
+.container {
+    max-width: 428px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Typography */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+/* Session Configuration */
+.config-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+/* Segmented Control */
+.segmented-control {
+    display: flex;
+    background: #f2f2f7;
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segmented-control label {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #007AFF;
+    margin: 0;
+}
+
+.segmented-control input[type="radio"]:checked + label {
+    background: white;
+    color: #007AFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Select dropdown */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d1d6;
+    border-radius: 8px;
+    background: white;
+    font-size: 16px;
+    color: #000;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+    background: #0056CC;
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #FF9500;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #E6850E;
+    transform: translateY(-1px);
+}
+
+.btn-text {
+    background: none;
+    color: #007AFF;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header span {
+    font-weight: 500;
+    color: #000;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 4px;
+    background: #f2f2f7;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #007AFF;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* Question card */
+.question-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-tag {
+    display: inline-block;
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.question-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: #000;
+}
+
+/* Options */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-button {
+    background: #f2f2f7;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+}
+
+.option-button:hover {
+    background: #e5e5ea;
+}
+
+.option-button.correct {
+    background: rgba(52, 199, 89, 0.1);
+    border-color: #34C759;
+    color: #34C759;
+}
+
+.option-button.incorrect {
+    background: rgba(255, 59, 48, 0.1);
+    border-color: #FF3B30;
+    color: #FF3B30;
+}
+
+.option-button.selected {
+    background: rgba(0, 122, 255, 0.1);
+    border-color: #007AFF;
+}
+
+/* Explanation */
+.explanation-container {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f2f2f7;
+    border-radius: 12px;
+}
+
+.explanation-container h3 {
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.explanation-container p {
+    color: #3c3c43;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Session Complete */
+.score-display {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.score-large {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #34C759;
+    margin: 16px 0;
+}
+
+.score-percentage {
+    font-size: 1.5rem;
+    color: #8e8e93;
+}
+
+.incorrect-message {
+    text-align: center;
+    margin: 20px 0;
+    color: #FF9500;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+        padding: 40px;
+    }
+    
+    .question-card {
+        padding: 32px;
+    }
+    
+    .segmented-control label {
+        padding: 12px 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 800px;
+    }
+    
+    .options-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    
+    .action-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .action-buttons button {
+        width: auto;
+        min-width: 200px;
+    }
+}
+
+/* iOS-specific styles */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    button {
+        -webkit-appearance: none;
+    }
+    
+    .question-card {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .config-section,
+    .question-card {
+        background: #1c1c1e;
+        border: 1px solid #38383a;
+    }
+    
+    .header {
+        background: #1c1c1e;
+        border-bottom: 1px solid #38383a;
+    }
+    
+    h1, h2, h3 {
+        color: #fff;
+    }
+    
+    .question-text {
+        color: #fff;
+    }
+    
+    .option-button {
+        background: #2c2c2e;
+        color: #fff;
+        border-color: #38383a;
+    }
+    
+    .option-button:hover {
+        background: #3a3a3c;
+    }
+    
+    .explanation-container {
+        background: #2c2c2e;
+    }
+    
+    .explanation-container p {
+        color: #ebebf5;
+    }
+    
+    select {
+        background: #2c2c2e;
+        color: #fff;
+        border-color: #38383a;
+    }
+    
+    .segmented-control {
+        background: #2c2c2e;
+    }
+    
+    .progress-bar {
+        background: #2c2c2e;
+    }
+}

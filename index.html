@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007AFF">
+    <title>USMLE Step 1 Review Tool</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="USMLE Review">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Session Configuration Screen -->
+        <div id="sessionConfig" class="screen active">
+            <div class="container">
+                <h1>USMLE Step 1 Review</h1>
+                <div class="config-section">
+                    <h2>Configure Your Study Session</h2>
+                    
+                    <div class="form-group">
+                        <label>Number of Questions</label>
+                        <div class="segmented-control">
+                            <input type="radio" id="q5" name="questionCount" value="5">
+                            <label for="q5">5</label>
+                            <input type="radio" id="q10" name="questionCount" value="10" checked>
+                            <label for="q10">10</label>
+                            <input type="radio" id="q15" name="questionCount" value="15">
+                            <label for="q15">15</label>
+                            <input type="radio" id="q20" name="questionCount" value="20">
+                            <label for="q20">20</label>
+                            <input type="radio" id="q25" name="questionCount" value="25">
+                            <label for="q25">25</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categorySelect">Category (Optional)</label>
+                        <select id="categorySelect">
+                            <option value="">All Categories</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Gastroenterology">Gastroenterology</option>
+                            <option value="Endocrinology">Endocrinology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Infectious Disease">Infectious Disease</option>
+                            <option value="Nephrology">Nephrology</option>
+                            <option value="Hematology">Hematology</option>
+                            <option value="Emergency Medicine">Emergency Medicine</option>
+                            <option value="Pulmonology">Pulmonology</option>
+                            <option value="Genetics">Genetics</option>
+                        </select>
+                    </div>
+
+                    <button id="startSession" class="btn-primary">Start Session</button>
+                    <button id="reviewIncorrect" class="btn-secondary" style="display: none;">Review Incorrect Questions (<span id="incorrectCount">0</span>)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Session Screen -->
+        <div id="studySession" class="screen">
+            <div class="header">
+                <button id="exitSession" class="btn-text">Exit</button>
+                <span id="questionProgress">Question 1 of 10</span>
+                <span id="scoreDisplay">0/0</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+
+            <div class="container">
+                <div id="questionCard" class="question-card">
+                    <div class="category-tag" id="categoryTag">Cardiology</div>
+                    <div class="question-text" id="questionText"></div>
+                    
+                    <div id="optionsContainer" class="options-container">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+
+                    <div id="explanationContainer" class="explanation-container" style="display: none;">
+                        <h3>Explanation</h3>
+                        <p id="explanationText"></p>
+                        <button id="nextQuestion" class="btn-primary">Next Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Session Complete Screen -->
+        <div id="sessionComplete" class="screen">
+            <div class="container">
+                <h1>Session Complete!</h1>
+                <div class="score-display">
+                    <h2>Your Score</h2>
+                    <div class="score-large" id="finalScore">0 / 0</div>
+                    <div class="score-percentage" id="finalPercentage">0%</div>
+                </div>
+                <div id="incorrectMessage" class="incorrect-message" style="display: none;"></div>
+                
+                <div class="action-buttons">
+                    <button id="newSession" class="btn-primary">Start New Session</button>
+                    <button id="reviewIncorrectFromComplete" class="btn-secondary" style="display: none;">Review Incorrect Questions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
