@@ -119,8 +119,22 @@ class QuizApp {
                     // Extract question and answer from the field content
                     const parts = fieldContent.split(' | ');
                     if (parts.length >= 1) {
-                        const question = parts[0];
-                        const answer = parts[1] || question; // fallback to question if no separate answer
+                        let question, answer;
+                        
+                        if (parts.length >= 2 && parts[1].trim()) {
+                            // Format: "question | answer"
+                            question = parts[0];
+                            answer = parts[1];
+                        } else {
+                            // Format: just question with cloze deletions, or only one part
+                            question = parts[0];
+                            answer = parts[0]; // Use same content but process differently
+                        }
+                        
+                        // Skip if question is empty
+                        if (!question || !question.trim()) {
+                            continue;
+                        }
                         
                         // If tags are empty, use the question content for categorization
                         const contentForCategorization = tags.trim() || question || '';
@@ -177,13 +191,21 @@ class QuizApp {
                   .replace(/&amp;/g, '&');
         
         // Handle cloze deletions like {{c1::answer}}
-        return text.replace(/\{\{c\d+::([^}]+)\}\}/g, (match, answer) => {
+        const processedText = text.replace(/\{\{c\d+::([^}]+)\}\}/g, (match, answer) => {
             if (showAnswers) {
                 return `<strong>${answer}</strong>`;
             } else {
                 return '[___]';
             }
         });
+        
+        // If showing answers but no cloze deletions were found, return the original text
+        // This handles cases where the answer is just descriptive text
+        if (showAnswers && processedText === text && !text.includes('{{')) {
+            return text;
+        }
+        
+        return processedText;
     }
 
     getCategoryFromTags(tags) {
@@ -341,15 +363,13 @@ class QuizApp {
     }
 
     setupEventListeners() {
-        document.getElementById('start-btn').addEventListener('click', () => {
-            this.currentMode = 'quiz';
-            this.startQuiz();
-        });
-        document.getElementById('flashcard-btn').addEventListener('click', () => {
-            this.currentMode = 'flashcard';
-            this.updateCategoryOptions('flashcard');
-            this.startFlashcards();
-        });
+        // Mode tab listeners
+        document.getElementById('quiz-mode-tab').addEventListener('click', () => this.switchMode('quiz'));
+        document.getElementById('flashcard-mode-tab').addEventListener('click', () => this.switchMode('flashcard'));
+        
+        // Action button listeners
+        document.getElementById('start-btn').addEventListener('click', () => this.startQuiz());
+        document.getElementById('flashcard-btn').addEventListener('click', () => this.startFlashcards());
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('restart-btn').addEventListener('click', () => this.restart());
         document.getElementById('exit-btn').addEventListener('click', () => this.exitQuiz());
@@ -359,20 +379,25 @@ class QuizApp {
         document.getElementById('show-answer-btn').addEventListener('click', () => this.showFlashcardAnswer());
         document.getElementById('prev-flashcard-btn').addEventListener('click', () => this.prevFlashcard());
         document.getElementById('next-flashcard-btn').addEventListener('click', () => this.nextFlashcard());
+    }
+    
+    switchMode(mode) {
+        this.currentMode = mode;
         
-        // Add hover/focus listeners to update categories when user interacts with buttons
-        document.getElementById('start-btn').addEventListener('mouseenter', () => {
-            if (this.currentMode !== 'quiz') {
-                this.currentMode = 'quiz';
-                this.updateCategoryOptions('quiz');
-            }
-        });
-        document.getElementById('flashcard-btn').addEventListener('mouseenter', () => {
-            if (this.currentMode !== 'flashcard') {
-                this.currentMode = 'flashcard';
-                this.updateCategoryOptions('flashcard');
-            }
-        });
+        // Update tab styling
+        document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.remove('active'));
+        if (mode === 'quiz') {
+            document.getElementById('quiz-mode-tab').classList.add('active');
+            document.getElementById('start-btn').style.display = 'block';
+            document.getElementById('flashcard-btn').style.display = 'none';
+        } else {
+            document.getElementById('flashcard-mode-tab').classList.add('active');
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('flashcard-btn').style.display = 'block';
+        }
+        
+        // Update categories
+        this.updateCategoryOptions(mode);
     }
 
     exitQuiz() {
@@ -655,19 +680,15 @@ class QuizApp {
 
     updateCategoryOptions(mode) {
         const categorySelect = document.getElementById('category');
-        const modeIndicator = document.getElementById('mode-indicator');
         
         // Clear existing options except "All Categories"
         const allOption = categorySelect.querySelector('option[value=""]');
         categorySelect.innerHTML = '';
         categorySelect.appendChild(allOption);
         
-        // Update mode indicator
         if (mode === 'quiz') {
-            modeIndicator.innerHTML = 'Categories shown for: <strong>Quiz Mode</strong>';
             this.populateQuizCategories();
         } else if (mode === 'flashcard') {
-            modeIndicator.innerHTML = 'Categories shown for: <strong>Flashcard Mode</strong>';
             this.populateFlashcardCategories();
         }
     }

@@ -24,16 +24,35 @@
 
         <main id="main-content">
             <div id="category-select" class="screen active">
-                <h2>Select Category</h2>
-                <div class="mode-indicator" id="mode-indicator">
-                    Categories shown for: <strong>Quiz Mode</strong>
+                <h2>Choose Study Mode</h2>
+                
+                <div class="mode-selector">
+                    <div class="mode-tabs">
+                        <button id="quiz-mode-tab" class="mode-tab active">
+                            <span class="mode-icon">📝</span>
+                            <span class="mode-title">Quiz Mode</span>
+                            <span class="mode-desc">Practice with multiple choice questions</span>
+                        </button>
+                        <button id="flashcard-mode-tab" class="mode-tab">
+                            <span class="mode-icon">🗂️</span>
+                            <span class="mode-title">Flashcard Mode</span>
+                            <span class="mode-desc">Study with fill-in-the-blank cards</span>
+                        </button>
+                    </div>
                 </div>
-                <select id="category">
-                    <option value="">All Categories</option>
-                </select>
-                <button id="start-btn" class="btn primary">Start Quiz</button>
-                <button id="flashcard-btn" class="btn primary">Study Flashcards</button>
-                <button id="review-incorrect-btn" class="btn secondary" style="display: none;">Review Incorrect Questions (<span id="incorrect-count">0</span>)</button>
+                
+                <div class="category-section">
+                    <h3>Select Category</h3>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="start-btn" class="btn primary">Start Quiz</button>
+                    <button id="flashcard-btn" class="btn primary" style="display: none;">Study Flashcards</button>
+                    <button id="review-incorrect-btn" class="btn secondary" style="display: none;">Review Incorrect Questions (<span id="incorrect-count">0</span>)</button>
+                </div>
             </div>
 
             <div id="question-screen" class="screen">
