@@ -20,8 +20,13 @@ class QuizApp {
     async loadQuestions() {
         // First check if CONSOLIDATED_QUESTION_BANK is available (it should be)
         if (typeof CONSOLIDATED_QUESTION_BANK !== 'undefined' && CONSOLIDATED_QUESTION_BANK.length > 0) {
-            this.allQuestions = CONSOLIDATED_QUESTION_BANK;
-            console.log(`Loaded ${this.allQuestions.length} questions from unified-question-bank.js`);
+            // Filter out malformed questions with incomplete options
+            this.allQuestions = CONSOLIDATED_QUESTION_BANK.filter(q => 
+                q.options && 
+                q.options.length >= 2 && 
+                q.options.every(opt => opt && opt.length > 3 && !opt.match(/^[A-E]\)$/))
+            );
+            console.log(`Loaded ${this.allQuestions.length} valid questions from unified-question-bank.js (filtered from ${CONSOLIDATED_QUESTION_BANK.length})`);
             return;
         }
         
@@ -29,8 +34,13 @@ class QuizApp {
         try {
             const response = await fetch('questions.json');
             if (response.ok) {
-                this.allQuestions = await response.json();
-                console.log(`Loaded ${this.allQuestions.length} questions from questions.json`);
+                const questions = await response.json();
+                this.allQuestions = questions.filter(q => 
+                    q.options && 
+                    q.options.length >= 2 && 
+                    q.options.every(opt => opt && opt.length > 3)
+                );
+                console.log(`Loaded ${this.allQuestions.length} valid questions from questions.json`);
                 return;
             }
         } catch (error) {
@@ -45,6 +55,13 @@ class QuizApp {
         document.getElementById('start-btn').addEventListener('click', () => this.startQuiz());
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('restart-btn').addEventListener('click', () => this.restart());
+        document.getElementById('exit-btn').addEventListener('click', () => this.exitQuiz());
+    }
+
+    exitQuiz() {
+        if (confirm('Are you sure you want to exit the quiz? Your progress will be lost.')) {
+            this.showScreen('category-select');
+        }
     }
 
     startQuiz() {

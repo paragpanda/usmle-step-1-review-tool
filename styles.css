@@ -98,8 +98,28 @@ select:focus {
     transform: translateY(-1px);
 }
 
+.btn.secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+}
+
+.btn.secondary:hover {
+    background: #edf2f7;
+    transform: translateY(-1px);
+}
+
 .question-card {
     max-width: 100%;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .category-badge {
@@ -110,7 +130,6 @@ select:focus {
     font-size: 14px;
     font-weight: 500;
     display: inline-block;
-    margin-bottom: 20px;
 }
 
 .question-text {

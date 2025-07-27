@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>USMLE Step 1 Review Tool</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
@@ -33,7 +36,10 @@
 
             <div id="question-screen" class="screen">
                 <div class="question-card">
-                    <div class="category-badge" id="current-category"></div>
+                    <div class="question-header">
+                        <button id="exit-btn" class="btn secondary">← Exit Quiz</button>
+                        <div class="category-badge" id="current-category"></div>
+                    </div>
                     <div class="question-text" id="question-text"></div>
                     <div class="options" id="options"></div>
                     <div class="explanation" id="explanation" style="display: none;"></div>
