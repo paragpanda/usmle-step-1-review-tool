@@ -1,0 +1,858 @@
+[
+  {
+    "id": 1,
+    "questionText": "When do you do CT head before LP in suspected meningitis?",
+    "options": [
+      "caused by hot tube fumes; not related to Pseudomonas (hot tub",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: caused by hot tube fumes; not related to Pseudomonas (hot tub",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 2,
+    "questionText": "the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 3,
+    "questionText": "most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "questionText": "be more lenient with her. What is the most appropriate response in this case?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 5,
+    "questionText": "Which of the following are among the criteria for establishing causality?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 6,
+    "questionText": "but doesn’t want radiation. Which of the following is the most appropriate response to this patient?",
+    "options": [
+      "roughly 2.5% of the population",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: roughly 2.5% of the population",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "questionText": "following study designs would be most appropriate for phase III?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 8,
+    "questionText": "phase would this patient be a part of?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 9,
+    "questionText": "collected for the purposes of research. Consent is required by whom in this case?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 10,
+    "questionText": "following best describes this study design and why it was chosen?",
+    "options": [
+      "did they have the risk factor.",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: did they have the risk factor.",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 11,
+    "questionText": "So where does retrospective cohort study come into play?",
+    "options": [
+      "disease. Almost all cohort studies are prospective. Retrospective cohort studies are",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: disease. Almost all cohort studies are prospective. Retrospective cohort studies are",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 12,
+    "questionText": "appropriate limb to be operated on. It is most appropriate for the X to be written by whom?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 13,
+    "questionText": "appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 14,
+    "questionText": "Which of the following is the most appropriate next step in communication?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 15,
+    "questionText": "referral at this time?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 16,
+    "questionText": "support is discontinued. Which of the following is the most appropriate action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 17,
+    "questionText": "necessary. Which of the following is the appropriate course of action?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 18,
+    "questionText": "discharged from the hospital. Which of the following is the best course of action?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 19,
+    "questionText": "next step by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 20,
+    "questionText": "most appropriate next best step by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 21,
+    "questionText": "respect to this patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 22,
+    "questionText": "correct in terms of making health-care decisions for this patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 23,
+    "questionText": "infarction. Which of the following is the most appropriate treatment for this patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 24,
+    "questionText": "of the following would be the appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 25,
+    "questionText": "action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 26,
+    "questionText": "information should the physician provide?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 27,
+    "questionText": "Which of the following would be an appropriate next best step in the organ donation process?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 28,
+    "questionText": "response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 29,
+    "questionText": "organs. Which of the following would not be unethical to sell?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 30,
+    "questionText": "circumstances would the physician likely win the case?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 31,
+    "questionText": "father. Which of the following is the most appropriate next best step by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 32,
+    "questionText": "burn on the child’s arm. Which of the following is the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 33,
+    "questionText": "appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 34,
+    "questionText": "following is the appropriate response to the patient’s request?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 35,
+    "questionText": "of the following would be the most appropriate actions by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 36,
+    "questionText": "conversation with the patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 37,
+    "questionText": "Which of the following is the appropriate way to start the conversation?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 38,
+    "questionText": "following is the best way to respond to this patient’s denial of her diagnosis?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 39,
+    "questionText": "consents to radiotherapy only. Which of the following is the most appropriate next best step?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 40,
+    "questionText": "lawyer. Which of the following is the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 41,
+    "questionText": "her. Which of the following is the appropriate next step by her primary care physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 42,
+    "questionText": "following could have been omitted while obtaining consent?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 43,
+    "questionText": "members to obtain consent for the procedure?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 44,
+    "questionText": "knowledge of Spanish is limited. Which of the following is the best approach to this situation?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 45,
+    "questionText": "This case best describes which of the following ethical principles?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 46,
+    "questionText": "response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 47,
+    "questionText": "surgery to be performed. Which of the following is the correct action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 48,
+    "questionText": "consciousness. Which of the following is the appropriate action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 49,
+    "questionText": "appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 50,
+    "questionText": "dialysis. Which of the following is the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 51,
+    "questionText": "appropriate next step?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 52,
+    "questionText": "do it. Which of the following is the most appropriate action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 53,
+    "questionText": "attendees. Which of the following is considered ethically acceptable?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 54,
+    "questionText": "at the grocery store. Which of the following is the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 55,
+    "questionText": "interaction. Which of the following is the correct response?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 56,
+    "questionText": "most appropriate response?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 57,
+    "questionText": "following is the appropriate action by the resident?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 58,
+    "questionText": "appropriate next best step?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 59,
+    "questionText": "an appropriate way to initiate the conversation?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 60,
+    "questionText": "probably too late now to quit anyway. Which stage of change best describes this patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 61,
+    "questionText": "describes this patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 62,
+    "questionText": "situations happening in the future?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 63,
+    "questionText": "records with him. Which of the following is the appropriate next step by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 64,
+    "questionText": "performing this analysis?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 65,
+    "questionText": "the following best describes this out-of-pocket expense referred to by the insurance company?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 66,
+    "questionText": "of action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 67,
+    "questionText": "would be the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 68,
+    "questionText": "situation with the patient?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 69,
+    "questionText": "statement by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 70,
+    "questionText": "me.” Which of the following is the most appropriate response by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 71,
+    "questionText": "the most appropriate action by the physician?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 72,
+    "questionText": "most appropriate communication by the physician?",
+    "options": [
+      "aplasia of 3rd and 4th pharyngeal",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: aplasia of 3rd and 4th pharyngeal",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 73,
+    "questionText": "20F + recurrent Staph infections + deficiency of CD18; what mechanism best explains this condition?",
+    "options": [
+      "answer = left",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: answer = left",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 74,
+    "questionText": "74M + lesion on cheek showing neoplastic cells with dense pigment granules; what’s the diagnosis?",
+    "options": [
+      "answer = HIV; only answer listed that",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: answer = HIV; only answer listed that",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 75,
+    "questionText": "shows protein of 70 mg/dL and cell count of 5/uL; what’s the mechanism for this patient’s condition?",
+    "options": [
+      "answer = ECG showing diffuse ST-elevations;",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: answer = ECG showing diffuse ST-elevations;",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 76,
+    "questionText": "37F + rheumatoid arthritis + PR-depressions and ST-elevations seen in many leads on ECG; diagnosis?",
+    "options": [
+      "answer = accessory spleen; 10% of people have a second, accessory spleen",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: answer = accessory spleen; 10% of people have a second, accessory spleen",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 77,
+    "questionText": "49M + long history of alcoholism + presents with smelly stools + pancreatic enzymes are normal; Dx?",
+    "options": [
+      "answer= rhabdomyolysis; classic finding is false-positive blood on",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: answer= rhabdomyolysis; classic finding is false-positive blood on",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 78,
+    "questionText": "44M + recent surgery in hospital + tachycardia + fever + high BP; what drug should be administered?",
+    "options": [
+      "leads to detrusor burnout; in overflow incontinence, postvoid volume is high (i.e.,",
+      "Alternative diagnosis A",
+      "Alternative diagnosis B",
+      "Alternative diagnosis C",
+      "Alternative diagnosis D"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The correct answer is: leads to detrusor burnout; in overflow incontinence, postvoid volume is high (i.e.,",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  },
+  {
+    "id": 79,
+    "questionText": "initial plasma level of 4 mg/L in a patient weighing 70 kg?",
+    "options": [],
+    "correctAnswerIndex": 0,
+    "explanation": "",
+    "category": "Clinical Medicine",
+    "subject": "General",
+    "difficulty": "medium"
+  }
+]
