@@ -12,6 +12,7 @@ class QuizApp {
         this.flashcards = [];
         this.currentFlashcardIndex = 0;
         this.showingFlashcardAnswer = false;
+        this.currentMode = 'quiz'; // 'quiz' or 'flashcard'
         
         this.init();
     }
@@ -22,7 +23,7 @@ class QuizApp {
         this.setupEventListeners();
         this.loadIncorrectQuestions();
         this.updateIncorrectQuestionsUI();
-        this.updateCategoryOptions();
+        this.updateCategoryOptions('quiz'); // Start with quiz mode
         this.showScreen('category-select');
     }
 
@@ -68,18 +69,33 @@ class QuizApp {
 
     async loadFlashcards() {
         try {
-            const response = await fetch('output_notes.csv');
-            if (!response.ok) {
-                console.log('Could not load flashcards CSV file');
-                this.flashcards = [];
-                return;
+            const csvFiles = ['output_notes.csv', 'output_notes_1.csv'];
+            let allFlashcards = [];
+            
+            for (const fileName of csvFiles) {
+                try {
+                    const response = await fetch(fileName);
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        const flashcards = this.parseCSV(csvText);
+                        allFlashcards = allFlashcards.concat(flashcards);
+                        console.log(`Loaded ${flashcards.length} flashcards from ${fileName}`);
+                    } else {
+                        console.log(`Could not load ${fileName}`);
+                    }
+                } catch (error) {
+                    console.log(`Error loading ${fileName}:`, error);
+                }
             }
             
-            const csvText = await response.text();
-            this.flashcards = this.parseCSV(csvText);
-            console.log(`Loaded ${this.flashcards.length} flashcards from CSV`);
+            this.flashcards = allFlashcards;
+            console.log(`Total flashcards loaded: ${this.flashcards.length}`);
+            
+            if (this.flashcards.length === 0) {
+                console.log('No flashcard files could be loaded');
+            }
         } catch (error) {
-            console.error('Error loading flashcards:', error);
+            console.error('Error in flashcard loading process:', error);
             this.flashcards = [];
         }
     }
@@ -106,12 +122,15 @@ class QuizApp {
                         const question = parts[0];
                         const answer = parts[1] || question; // fallback to question if no separate answer
                         
+                        // If tags are empty, use the question content for categorization
+                        const contentForCategorization = tags.trim() || question || '';
+                        
                         flashcards.push({
                             id: fields[0],
                             tags: tags.split(' ').filter(tag => tag.length > 0),
                             question: this.processClozeText(question, false), // Show with blanks
                             answer: this.processClozeText(answer, true), // Show with answers
-                            category: this.getCategoryFromTags(tags)
+                            category: this.getCategoryFromTags(contentForCategorization)
                         });
                     }
                 }
@@ -184,7 +203,10 @@ class QuizApp {
         if (tagString.includes('cardio') || tagString.includes('cardiac') ||
             tagString.includes('heart') || tagString.includes('vascular') ||
             tagString.includes('myocardial') || tagString.includes('hypertension') ||
-            tagString.includes('stroke') || tagString.includes('aneurysm')) {
+            tagString.includes('stroke') || tagString.includes('aneurysm') ||
+            tagString.includes('rheumatic heart') || tagString.includes('mitral') ||
+            tagString.includes('aortic') || tagString.includes('tricuspid') ||
+            tagString.includes('pericarditis') || tagString.includes('arrhythmia')) {
             return 'Cardiovascular';
         }
         
@@ -244,7 +266,12 @@ class QuizApp {
             tagString.includes('virus') || tagString.includes('fungal') ||
             tagString.includes('gram_positive') || tagString.includes('gram_negative') ||
             tagString.includes('hiv') || tagString.includes('tuberculosis') ||
-            tagString.includes('parasit') || tagString.includes('microbiology')) {
+            tagString.includes('parasit') || tagString.includes('microbiology') ||
+            tagString.includes('staphylococcus') || tagString.includes('streptococcus') ||
+            tagString.includes('staph') || tagString.includes('strep') ||
+            tagString.includes('pneumonia') || tagString.includes('sepsis') ||
+            tagString.includes('meningitis') || tagString.includes('endocarditis') ||
+            tagString.includes('cellulitis') || tagString.includes('abscess')) {
             return 'Infectious Disease';
         }
         
@@ -257,7 +284,10 @@ class QuizApp {
         
         // Pathology
         if (tagString.includes('pathology') || tagString.includes('inflammation') ||
-            tagString.includes('wound_healing') || tagString.includes('trauma')) {
+            tagString.includes('wound_healing') || tagString.includes('trauma') ||
+            tagString.includes('necrosis') || tagString.includes('apoptosis') ||
+            tagString.includes('fever') || tagString.includes('shock') ||
+            tagString.includes('thrombosis') || tagString.includes('embolism')) {
             return 'Pathology';
         }
         
@@ -311,8 +341,15 @@ class QuizApp {
     }
 
     setupEventListeners() {
-        document.getElementById('start-btn').addEventListener('click', () => this.startQuiz());
-        document.getElementById('flashcard-btn').addEventListener('click', () => this.startFlashcards());
+        document.getElementById('start-btn').addEventListener('click', () => {
+            this.currentMode = 'quiz';
+            this.startQuiz();
+        });
+        document.getElementById('flashcard-btn').addEventListener('click', () => {
+            this.currentMode = 'flashcard';
+            this.updateCategoryOptions('flashcard');
+            this.startFlashcards();
+        });
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('restart-btn').addEventListener('click', () => this.restart());
         document.getElementById('exit-btn').addEventListener('click', () => this.exitQuiz());
@@ -322,10 +359,26 @@ class QuizApp {
         document.getElementById('show-answer-btn').addEventListener('click', () => this.showFlashcardAnswer());
         document.getElementById('prev-flashcard-btn').addEventListener('click', () => this.prevFlashcard());
         document.getElementById('next-flashcard-btn').addEventListener('click', () => this.nextFlashcard());
+        
+        // Add hover/focus listeners to update categories when user interacts with buttons
+        document.getElementById('start-btn').addEventListener('mouseenter', () => {
+            if (this.currentMode !== 'quiz') {
+                this.currentMode = 'quiz';
+                this.updateCategoryOptions('quiz');
+            }
+        });
+        document.getElementById('flashcard-btn').addEventListener('mouseenter', () => {
+            if (this.currentMode !== 'flashcard') {
+                this.currentMode = 'flashcard';
+                this.updateCategoryOptions('flashcard');
+            }
+        });
     }
 
     exitQuiz() {
         if (confirm('Are you sure you want to exit the quiz? Your progress will be lost.')) {
+            this.currentMode = 'quiz';
+            this.updateCategoryOptions('quiz');
             this.showScreen('category-select');
         }
     }
@@ -482,6 +535,8 @@ class QuizApp {
     }
 
     restart() {
+        this.currentMode = 'quiz';
+        this.updateCategoryOptions('quiz');
         this.showScreen('category-select');
     }
 
@@ -542,7 +597,7 @@ class QuizApp {
         const selectedCategory = document.getElementById('category').value;
         
         if (!this.flashcards || this.flashcards.length === 0) {
-            alert('No flashcards available. Please ensure output_notes.csv is in the correct location.');
+            alert('No flashcards available. Please ensure output_notes.csv and output_notes_1.csv are in the correct location.');
             return;
         }
         
@@ -569,6 +624,8 @@ class QuizApp {
     }
 
     exitFlashcards() {
+        this.currentMode = 'quiz';
+        this.updateCategoryOptions('quiz');
         this.showScreen('category-select');
     }
 
@@ -596,7 +653,59 @@ class QuizApp {
         this.displayFlashcard();
     }
 
-    updateCategoryOptions() {
+    updateCategoryOptions(mode) {
+        const categorySelect = document.getElementById('category');
+        const modeIndicator = document.getElementById('mode-indicator');
+        
+        // Clear existing options except "All Categories"
+        const allOption = categorySelect.querySelector('option[value=""]');
+        categorySelect.innerHTML = '';
+        categorySelect.appendChild(allOption);
+        
+        // Update mode indicator
+        if (mode === 'quiz') {
+            modeIndicator.innerHTML = 'Categories shown for: <strong>Quiz Mode</strong>';
+            this.populateQuizCategories();
+        } else if (mode === 'flashcard') {
+            modeIndicator.innerHTML = 'Categories shown for: <strong>Flashcard Mode</strong>';
+            this.populateFlashcardCategories();
+        }
+    }
+    
+    populateQuizCategories() {
+        if (!this.allQuestions || this.allQuestions.length === 0) return;
+        
+        // Count questions by category
+        const categoryCounts = {};
+        this.allQuestions.forEach(question => {
+            const category = question.category;
+            categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+        });
+        
+        // Add quiz categories to dropdown
+        const categorySelect = document.getElementById('category');
+        const quizCategories = [
+            'Medical Ethics & Communication',
+            'Pharmacology', 
+            'Clinical Medicine',
+            'Research & Statistics',
+            'Emergency Medicine'
+        ];
+        
+        quizCategories.forEach(category => {
+            const count = categoryCounts[category] || 0;
+            if (count > 0) {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = `${category} (${count})`;
+                categorySelect.appendChild(option);
+            }
+        });
+        
+        console.log('Quiz category distribution:', categoryCounts);
+    }
+    
+    populateFlashcardCategories() {
         if (!this.flashcards || this.flashcards.length === 0) return;
         
         // Count flashcards by category
@@ -606,22 +715,27 @@ class QuizApp {
             categoryCounts[category] = (categoryCounts[category] || 0) + 1;
         });
         
-        // Update option text to include counts
+        // Add flashcard categories to dropdown
         const categorySelect = document.getElementById('category');
-        const options = categorySelect.querySelectorAll('option[value!=""]');
+        const flashcardCategories = [
+            'Pharmacology', 'Cardiovascular', 'Respiratory', 'Neurology',
+            'Endocrine', 'Renal', 'Gastrointestinal', 'Hematology',
+            'Oncology', 'Infectious Disease', 'Psychiatry', 'Pathology',
+            'Biochemistry', 'Immunology', 'Genetics', 'OBGYN',
+            'Pediatrics', 'Dermatology', 'Emergency Medicine', 'General Medicine'
+        ];
         
-        options.forEach(option => {
-            const category = option.value;
+        flashcardCategories.forEach(category => {
             const count = categoryCounts[category] || 0;
             if (count > 0) {
+                const option = document.createElement('option');
+                option.value = category;
                 option.textContent = `${category} (${count})`;
-                option.style.display = 'block';
-            } else {
-                option.style.display = 'none';
+                categorySelect.appendChild(option);
             }
         });
         
-        console.log('Category distribution:', categoryCounts);
+        console.log('Flashcard category distribution:', categoryCounts);
     }
 
     displayFlashcard() {
