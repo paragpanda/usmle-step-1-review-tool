@@ -18,26 +18,27 @@ class QuizApp {
     }
 
     async loadQuestions() {
+        // First check if CONSOLIDATED_QUESTION_BANK is available (it should be)
+        if (typeof CONSOLIDATED_QUESTION_BANK !== 'undefined' && CONSOLIDATED_QUESTION_BANK.length > 0) {
+            this.allQuestions = CONSOLIDATED_QUESTION_BANK;
+            console.log(`Loaded ${this.allQuestions.length} questions from unified-question-bank.js`);
+            return;
+        }
+        
+        // Try loading from questions.json as backup
         try {
-            // Try loading from questions.json first
             const response = await fetch('questions.json');
             if (response.ok) {
                 this.allQuestions = await response.json();
-                console.log('Loaded questions from questions.json');
+                console.log(`Loaded ${this.allQuestions.length} questions from questions.json`);
                 return;
             }
         } catch (error) {
-            console.log('Loading from fallback...');
+            console.log('Could not load questions.json');
         }
         
-        // Fallback to unified-question-bank.js
-        if (typeof CONSOLIDATED_QUESTION_BANK !== 'undefined') {
-            this.allQuestions = CONSOLIDATED_QUESTION_BANK;
-            console.log('Loaded questions from unified-question-bank.js');
-        } else {
-            console.error('No questions available');
-            this.allQuestions = [];
-        }
+        console.error('No questions available');
+        this.allQuestions = [];
     }
 
     setupEventListeners() {
@@ -49,11 +50,28 @@ class QuizApp {
     startQuiz() {
         const selectedCategory = document.getElementById('category').value;
         
+        console.log(`Starting quiz with category: "${selectedCategory}"`);
+        console.log(`Total available questions: ${this.allQuestions.length}`);
+        
+        // Check if we have questions
+        if (!this.allQuestions || this.allQuestions.length === 0) {
+            alert('No questions available. Please check the console for errors.');
+            return;
+        }
+        
         // Filter questions by category
         if (selectedCategory) {
             this.questions = this.allQuestions.filter(q => q.category === selectedCategory);
+            console.log(`Filtered to ${this.questions.length} questions for category "${selectedCategory}"`);
         } else {
             this.questions = [...this.allQuestions];
+            console.log(`Using all ${this.questions.length} questions`);
+        }
+        
+        // Check if filtering resulted in questions
+        if (this.questions.length === 0) {
+            alert(`No questions found for category "${selectedCategory}". Try selecting "All Categories" instead.`);
+            return;
         }
         
         // Shuffle questions
