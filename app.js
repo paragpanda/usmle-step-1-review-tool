@@ -37,8 +37,15 @@ class StudySession {
     startNewSession() {
         const category = document.getElementById('categorySelect').value;
         
-        // Get all questions from selected category (or all if none selected)
-        this.questions = questionBank.getRandomQuestions(50, category || null);
+        // Get ALL questions from selected category (or all if none selected)
+        if (category) {
+            this.questions = questionBank.getQuestionsByCategory(category);
+            // Shuffle them for random order
+            this.questions = this.questions.sort(() => Math.random() - 0.5);
+        } else {
+            // If no category selected, get all questions shuffled
+            this.questions = questionBank.getAllQuestions().sort(() => Math.random() - 0.5);
+        }
         this.currentQuestionIndex = 0;
         this.attempts = [];
         this.isReviewMode = false;
