@@ -39,6 +39,11 @@ body {
     max-width: 428px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Typography */

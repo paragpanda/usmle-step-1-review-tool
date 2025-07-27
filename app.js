@@ -9,15 +9,42 @@ class StudySession {
         this.isReviewMode = false;
         this.selectedAnswer = null;
         this.showingAnswer = false;
+        this.questionBank = null;
         
-        // Load saved progress
-        this.loadProgress();
+        // Load questions and initialize
+        this.loadQuestions().then(() => {
+            // Load saved progress
+            this.loadProgress();
+            
+            // Initialize event listeners
+            this.initializeEventListeners();
+            
+            // Update UI
+            this.updateIncorrectCount();
+        });
+    }
+
+    async loadQuestions() {
+        try {
+            // Try to load from questions.json first
+            const response = await fetch('questions.json');
+            if (response.ok) {
+                const questions = await response.json();
+                this.questionBank = new QuestionBank(questions);
+                console.log('Loaded questions from questions.json');
+                return;
+            }
+        } catch (error) {
+            console.log('Could not load questions.json, falling back to unified-question-bank.js');
+        }
         
-        // Initialize event listeners
-        this.initializeEventListeners();
-        
-        // Update UI
-        this.updateIncorrectCount();
+        // Fallback to the existing question bank
+        if (typeof CONSOLIDATED_QUESTION_BANK !== 'undefined') {
+            this.questionBank = new QuestionBank(CONSOLIDATED_QUESTION_BANK);
+            console.log('Loaded questions from unified-question-bank.js');
+        } else {
+            console.error('No question bank available');
+        }
     }
 
     initializeEventListeners() {
@@ -39,12 +66,12 @@ class StudySession {
         
         // Get ALL questions from selected category (or all if none selected)
         if (category) {
-            this.questions = questionBank.getQuestionsByCategory(category);
+            this.questions = this.questionBank.getQuestionsByCategory(category);
             // Shuffle them for random order
             this.questions = this.questions.sort(() => Math.random() - 0.5);
         } else {
             // If no category selected, get all questions shuffled
-            this.questions = questionBank.getAllQuestions().sort(() => Math.random() - 0.5);
+            this.questions = this.questionBank.getAllQuestions().sort(() => Math.random() - 0.5);
         }
         this.currentQuestionIndex = 0;
         this.attempts = [];
