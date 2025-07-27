@@ -9,12 +9,16 @@ class QuizApp {
         this.showingAnswer = false;
         this.incorrectQuestions = [];
         this.isReviewMode = false;
+        this.flashcards = [];
+        this.currentFlashcardIndex = 0;
+        this.showingFlashcardAnswer = false;
         
         this.init();
     }
 
     async init() {
         await this.loadQuestions();
+        await this.loadFlashcards();
         this.setupEventListeners();
         this.loadIncorrectQuestions();
         this.updateIncorrectQuestionsUI();
@@ -61,13 +65,132 @@ class QuizApp {
         this.allQuestions = [];
     }
 
+    async loadFlashcards() {
+        try {
+            const response = await fetch('output_notes.csv');
+            if (!response.ok) {
+                console.log('Could not load flashcards CSV file');
+                this.flashcards = [];
+                return;
+            }
+            
+            const csvText = await response.text();
+            this.flashcards = this.parseCSV(csvText);
+            console.log(`Loaded ${this.flashcards.length} flashcards from CSV`);
+        } catch (error) {
+            console.error('Error loading flashcards:', error);
+            this.flashcards = [];
+        }
+    }
+
+    parseCSV(csvText) {
+        const lines = csvText.split('\n');
+        const flashcards = [];
+        
+        // Skip header line
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            
+            try {
+                // Parse CSV line - handle quoted fields with commas
+                const fields = this.parseCSVLine(line);
+                if (fields.length >= 7) {
+                    const tags = fields[5] || '';
+                    const fieldContent = fields[6] || '';
+                    
+                    // Extract question and answer from the field content
+                    const parts = fieldContent.split(' | ');
+                    if (parts.length >= 1) {
+                        const question = parts[0];
+                        const answer = parts[1] || question; // fallback to question if no separate answer
+                        
+                        flashcards.push({
+                            id: fields[0],
+                            tags: tags.split(' ').filter(tag => tag.length > 0),
+                            question: this.processClozeText(question, false), // Show with blanks
+                            answer: this.processClozeText(answer, true), // Show with answers
+                            category: this.getCategoryFromTags(tags)
+                        });
+                    }
+                }
+            } catch (error) {
+                // Skip malformed lines
+                continue;
+            }
+        }
+        
+        return flashcards;
+    }
+
+    parseCSVLine(line) {
+        const fields = [];
+        let current = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            
+            if (char === '"' && (i === 0 || line[i-1] === ',')) {
+                inQuotes = true;
+            } else if (char === '"' && inQuotes && (i === line.length - 1 || line[i+1] === ',')) {
+                inQuotes = false;
+            } else if (char === ',' && !inQuotes) {
+                fields.push(current);
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        
+        fields.push(current);
+        return fields;
+    }
+
+    processClozeText(text, showAnswers) {
+        if (!text) return '';
+        
+        // Decode HTML entities
+        text = text.replace(/&nbsp;/g, ' ')
+                  .replace(/&gt;/g, '>')
+                  .replace(/&lt;/g, '<')
+                  .replace(/&amp;/g, '&');
+        
+        // Handle cloze deletions like {{c1::answer}}
+        return text.replace(/\{\{c\d+::([^}]+)\}\}/g, (match, answer) => {
+            if (showAnswers) {
+                return `<strong>${answer}</strong>`;
+            } else {
+                return '[___]';
+            }
+        });
+    }
+
+    getCategoryFromTags(tags) {
+        const tagString = tags.toLowerCase();
+        if (tagString.includes('pharm')) return 'Pharmacology';
+        if (tagString.includes('autonomic')) return 'Pharmacology';
+        if (tagString.includes('cardio')) return 'Clinical Medicine';
+        if (tagString.includes('neuro')) return 'Clinical Medicine';
+        if (tagString.includes('endo')) return 'Clinical Medicine';
+        if (tagString.includes('ethics')) return 'Medical Ethics & Communication';
+        if (tagString.includes('research') || tagString.includes('stats')) return 'Research & Statistics';
+        if (tagString.includes('emergency')) return 'Emergency Medicine';
+        return 'General';
+    }
+
     setupEventListeners() {
         document.getElementById('start-btn').addEventListener('click', () => this.startQuiz());
+        document.getElementById('flashcard-btn').addEventListener('click', () => this.startFlashcards());
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('restart-btn').addEventListener('click', () => this.restart());
         document.getElementById('exit-btn').addEventListener('click', () => this.exitQuiz());
+        document.getElementById('flashcard-exit-btn').addEventListener('click', () => this.exitFlashcards());
         document.getElementById('review-incorrect-btn').addEventListener('click', () => this.startReviewMode());
         document.getElementById('review-from-results-btn').addEventListener('click', () => this.startReviewMode());
+        document.getElementById('show-answer-btn').addEventListener('click', () => this.showFlashcardAnswer());
+        document.getElementById('prev-flashcard-btn').addEventListener('click', () => this.prevFlashcard());
+        document.getElementById('next-flashcard-btn').addEventListener('click', () => this.nextFlashcard());
     }
 
     exitQuiz() {
@@ -282,6 +405,77 @@ class QuizApp {
         } else {
             reviewBtn.style.display = 'none';
         }
+    }
+
+    startFlashcards() {
+        const selectedCategory = document.getElementById('category').value;
+        
+        if (!this.flashcards || this.flashcards.length === 0) {
+            alert('No flashcards available. Please ensure output_notes.csv is in the correct location.');
+            return;
+        }
+        
+        // Filter flashcards by category
+        let filteredFlashcards;
+        if (selectedCategory) {
+            filteredFlashcards = this.flashcards.filter(f => f.category === selectedCategory);
+            if (filteredFlashcards.length === 0) {
+                alert(`No flashcards found for category "${selectedCategory}". Try selecting "All Categories" instead.`);
+                return;
+            }
+        } else {
+            filteredFlashcards = [...this.flashcards];
+        }
+        
+        this.currentFlashcards = this.shuffleArray(filteredFlashcards);
+        this.currentFlashcardIndex = 0;
+        this.showingFlashcardAnswer = false;
+        
+        this.showScreen('flashcard-screen');
+        this.displayFlashcard();
+    }
+
+    exitFlashcards() {
+        this.showScreen('category-select');
+    }
+
+    displayFlashcard() {
+        if (this.currentFlashcardIndex >= this.currentFlashcards.length) {
+            this.currentFlashcardIndex = 0; // Loop back to start
+        }
+        
+        const flashcard = this.currentFlashcards[this.currentFlashcardIndex];
+        this.showingFlashcardAnswer = false;
+        
+        document.getElementById('flashcard-category').textContent = flashcard.category;
+        document.getElementById('flashcard-text').innerHTML = flashcard.question;
+        document.getElementById('flashcard-answer').innerHTML = flashcard.answer;
+        document.getElementById('flashcard-answer').style.display = 'none';
+        document.getElementById('show-answer-btn').style.display = 'block';
+        document.getElementById('flashcard-nav').style.display = 'none';
+    }
+
+    showFlashcardAnswer() {
+        this.showingFlashcardAnswer = true;
+        document.getElementById('flashcard-answer').style.display = 'block';
+        document.getElementById('show-answer-btn').style.display = 'none';
+        document.getElementById('flashcard-nav').style.display = 'block';
+    }
+
+    prevFlashcard() {
+        this.currentFlashcardIndex--;
+        if (this.currentFlashcardIndex < 0) {
+            this.currentFlashcardIndex = this.currentFlashcards.length - 1;
+        }
+        this.displayFlashcard();
+    }
+
+    nextFlashcard() {
+        this.currentFlashcardIndex++;
+        if (this.currentFlashcardIndex >= this.currentFlashcards.length) {
+            this.currentFlashcardIndex = 0;
+        }
+        this.displayFlashcard();
     }
 }
 

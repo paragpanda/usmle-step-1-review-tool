@@ -34,6 +34,7 @@
                     <option value="Emergency Medicine">Emergency Medicine</option>
                 </select>
                 <button id="start-btn" class="btn primary">Start Quiz</button>
+                <button id="flashcard-btn" class="btn primary">Study Flashcards</button>
                 <button id="review-incorrect-btn" class="btn secondary" style="display: none;">Review Incorrect Questions (<span id="incorrect-count">0</span>)</button>
             </div>
 
@@ -47,6 +48,26 @@
                     <div class="options" id="options"></div>
                     <div class="explanation" id="explanation" style="display: none;"></div>
                     <button id="next-btn" class="btn primary" style="display: none;">Next Question</button>
+                </div>
+            </div>
+
+            <div id="flashcard-screen" class="screen">
+                <div class="question-card">
+                    <div class="question-header">
+                        <button id="flashcard-exit-btn" class="btn secondary">← Back to Menu</button>
+                        <div class="category-badge" id="flashcard-category"></div>
+                    </div>
+                    <div class="flashcard-content">
+                        <div class="flashcard-text" id="flashcard-text"></div>
+                        <div class="flashcard-answer" id="flashcard-answer" style="display: none;"></div>
+                    </div>
+                    <div class="flashcard-controls">
+                        <button id="show-answer-btn" class="btn primary">Show Answer</button>
+                        <div class="flashcard-nav" id="flashcard-nav" style="display: none;">
+                            <button id="prev-flashcard-btn" class="btn secondary">Previous</button>
+                            <button id="next-flashcard-btn" class="btn primary">Next</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

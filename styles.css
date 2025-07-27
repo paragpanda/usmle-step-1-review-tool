@@ -38,6 +38,43 @@ h1 {
     font-weight: 600;
 }
 
+/* Flashcard styles */
+.flashcard-content {
+    margin: 20px 0;
+}
+
+.flashcard-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #4299e1;
+}
+
+.flashcard-answer {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f0fff4;
+    border-radius: 8px;
+    border-left: 4px solid #48bb78;
+}
+
+.flashcard-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.flashcard-nav {
+    display: flex;
+    gap: 15px;
+}
+
 .stats {
     display: flex;
     gap: 20px;
