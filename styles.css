@@ -205,6 +205,13 @@ select:focus {
     color: #666;
 }
 
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .app {

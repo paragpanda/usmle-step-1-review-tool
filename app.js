@@ -7,6 +7,8 @@ class QuizApp {
         this.score = 0;
         this.selectedAnswer = null;
         this.showingAnswer = false;
+        this.incorrectQuestions = [];
+        this.isReviewMode = false;
         
         this.init();
     }
@@ -14,6 +16,8 @@ class QuizApp {
     async init() {
         await this.loadQuestions();
         this.setupEventListeners();
+        this.loadIncorrectQuestions();
+        this.updateIncorrectQuestionsUI();
         this.showScreen('category-select');
     }
 
@@ -62,6 +66,8 @@ class QuizApp {
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('restart-btn').addEventListener('click', () => this.restart());
         document.getElementById('exit-btn').addEventListener('click', () => this.exitQuiz());
+        document.getElementById('review-incorrect-btn').addEventListener('click', () => this.startReviewMode());
+        document.getElementById('review-from-results-btn').addEventListener('click', () => this.startReviewMode());
     }
 
     exitQuiz() {
@@ -102,6 +108,23 @@ class QuizApp {
         
         this.currentQuestionIndex = 0;
         this.score = 0;
+        this.isReviewMode = false;
+        this.updateStats();
+        this.showScreen('question-screen');
+        this.displayQuestion();
+    }
+
+    startReviewMode() {
+        if (this.incorrectQuestions.length === 0) {
+            alert('No incorrect questions to review! Complete a quiz first.');
+            return;
+        }
+
+        this.questions = [...this.incorrectQuestions];
+        this.questions = this.shuffleArray(this.questions);
+        this.currentQuestionIndex = 0;
+        this.score = 0;
+        this.isReviewMode = true;
         this.updateStats();
         this.showScreen('question-screen');
         this.displayQuestion();
@@ -149,6 +172,13 @@ class QuizApp {
         
         if (correct) {
             this.score++;
+        } else {
+            // Add to incorrect questions if not already there and not in review mode
+            if (!this.isReviewMode && !this.incorrectQuestions.find(q => q.id === question.id)) {
+                this.incorrectQuestions.push(question);
+                this.saveIncorrectQuestions();
+                this.updateIncorrectQuestionsUI();
+            }
         }
 
         // Show feedback
@@ -184,6 +214,16 @@ class QuizApp {
             <div class="score-large">${this.score}/${this.questions.length}</div>
             <div class="score-percent">${percentage}%</div>
         `;
+        
+        // Show review button if there are incorrect questions from this session
+        const reviewBtn = document.getElementById('review-from-results-btn');
+        const incorrectFromSession = this.questions.length - this.score;
+        if (incorrectFromSession > 0 && !this.isReviewMode) {
+            reviewBtn.style.display = 'inline-block';
+        } else {
+            reviewBtn.style.display = 'none';
+        }
+        
         this.showScreen('results-screen');
     }
 
@@ -210,6 +250,38 @@ class QuizApp {
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         return shuffled;
+    }
+
+    loadIncorrectQuestions() {
+        try {
+            const saved = localStorage.getItem('usmle-incorrect-questions');
+            if (saved) {
+                this.incorrectQuestions = JSON.parse(saved);
+            }
+        } catch (error) {
+            console.log('Could not load incorrect questions from storage');
+            this.incorrectQuestions = [];
+        }
+    }
+
+    saveIncorrectQuestions() {
+        try {
+            localStorage.setItem('usmle-incorrect-questions', JSON.stringify(this.incorrectQuestions));
+        } catch (error) {
+            console.log('Could not save incorrect questions to storage');
+        }
+    }
+
+    updateIncorrectQuestionsUI() {
+        const reviewBtn = document.getElementById('review-incorrect-btn');
+        const countSpan = document.getElementById('incorrect-count');
+        
+        if (this.incorrectQuestions.length > 0) {
+            reviewBtn.style.display = 'inline-block';
+            countSpan.textContent = this.incorrectQuestions.length;
+        } else {
+            reviewBtn.style.display = 'none';
+        }
     }
 }
 

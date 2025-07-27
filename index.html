@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>USMLE Step 1 Review Tool</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css?v=1753600004">
+    <link rel="stylesheet" href="styles.css?v=1753600349">
 </head>
 <body>
     <div class="app">
@@ -32,6 +32,7 @@
                     <option value="Emergency Medicine">Emergency Medicine</option>
                 </select>
                 <button id="start-btn" class="btn primary">Start Quiz</button>
+                <button id="review-incorrect-btn" class="btn secondary" style="display: none;">Review Incorrect Questions (<span id="incorrect-count">0</span>)</button>
             </div>
 
             <div id="question-screen" class="screen">
@@ -50,12 +51,15 @@
             <div id="results-screen" class="screen">
                 <h2>Quiz Complete!</h2>
                 <div class="final-score" id="final-score"></div>
-                <button id="restart-btn" class="btn primary">Start New Quiz</button>
+                <div class="action-buttons">
+                    <button id="restart-btn" class="btn primary">Start New Quiz</button>
+                    <button id="review-from-results-btn" class="btn secondary" style="display: none;">Review Incorrect Questions</button>
+                </div>
             </div>
         </main>
     </div>
 
-    <script src="unified-question-bank.js?v=1753600004"></script>
-    <script src="app.js?v=1753600004"></script>
+    <script src="unified-question-bank.js?v=1753600349"></script>
+    <script src="app.js?v=1753600349"></script>
 </body>
 </html>
