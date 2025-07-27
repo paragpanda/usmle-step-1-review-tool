@@ -3,8 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -30,9 +29,10 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Convert questions to JSON
+    - name: Build project
       run: |
-        python scripts/convert-questions.py
+        chmod +x build.sh
+        ./build.sh
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
