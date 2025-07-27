@@ -22,6 +22,7 @@ class QuizApp {
         this.setupEventListeners();
         this.loadIncorrectQuestions();
         this.updateIncorrectQuestionsUI();
+        this.updateCategoryOptions();
         this.showScreen('category-select');
     }
 
@@ -168,15 +169,145 @@ class QuizApp {
 
     getCategoryFromTags(tags) {
         const tagString = tags.toLowerCase();
-        if (tagString.includes('pharm')) return 'Pharmacology';
-        if (tagString.includes('autonomic')) return 'Pharmacology';
-        if (tagString.includes('cardio')) return 'Clinical Medicine';
-        if (tagString.includes('neuro')) return 'Clinical Medicine';
-        if (tagString.includes('endo')) return 'Clinical Medicine';
-        if (tagString.includes('ethics')) return 'Medical Ethics & Communication';
-        if (tagString.includes('research') || tagString.includes('stats')) return 'Research & Statistics';
-        if (tagString.includes('emergency')) return 'Emergency Medicine';
-        return 'General';
+        
+        // Pharmacology
+        if (tagString.includes('pharm') || tagString.includes('drug') || 
+            tagString.includes('antibiotic') || tagString.includes('antiviral') ||
+            tagString.includes('antifungal') || tagString.includes('autonomic') ||
+            tagString.includes('adrenergic') || tagString.includes('anticholinergic') ||
+            tagString.includes('anticoagulant') || tagString.includes('antihypertensive') ||
+            tagString.includes('antiepileptic') || tagString.includes('antipsychotic')) {
+            return 'Pharmacology';
+        }
+        
+        // Cardiovascular
+        if (tagString.includes('cardio') || tagString.includes('cardiac') ||
+            tagString.includes('heart') || tagString.includes('vascular') ||
+            tagString.includes('myocardial') || tagString.includes('hypertension') ||
+            tagString.includes('stroke') || tagString.includes('aneurysm')) {
+            return 'Cardiovascular';
+        }
+        
+        // Respiratory
+        if (tagString.includes('respiratory') || tagString.includes('lung') ||
+            tagString.includes('copd') || tagString.includes('asthma') ||
+            tagString.includes('pneumonia') || tagString.includes('restrictive_lung')) {
+            return 'Respiratory';
+        }
+        
+        // Neurology
+        if (tagString.includes('neuro') || tagString.includes('brain') ||
+            tagString.includes('alzheimers') || tagString.includes('dementia') ||
+            tagString.includes('parkinsons') || tagString.includes('huntingtons') ||
+            tagString.includes('peripheral_neuropathy') || tagString.includes('brain_lesions')) {
+            return 'Neurology';
+        }
+        
+        // Endocrine
+        if (tagString.includes('endocrine') || tagString.includes('diabetes') ||
+            tagString.includes('thyroid') || tagString.includes('adrenal') ||
+            tagString.includes('pituitary') || tagString.includes('hormone')) {
+            return 'Endocrine';
+        }
+        
+        // Renal
+        if (tagString.includes('renal') || tagString.includes('kidney') ||
+            tagString.includes('acute_renal_failure') || tagString.includes('uti') ||
+            tagString.includes('congenital_renal')) {
+            return 'Renal';
+        }
+        
+        // Gastrointestinal
+        if (tagString.includes('gastrointestinal') || tagString.includes('liver') ||
+            tagString.includes('hepatitis') || tagString.includes('ibd') ||
+            tagString.includes('gi ') || tagString.includes('digestive')) {
+            return 'Gastrointestinal';
+        }
+        
+        // Hematology
+        if (tagString.includes('hematology') || tagString.includes('blood') ||
+            tagString.includes('rbc_disorders') || tagString.includes('wbc_disorders') ||
+            tagString.includes('anemia') || tagString.includes('bleeding')) {
+            return 'Hematology';
+        }
+        
+        // Oncology
+        if (tagString.includes('cancer') || tagString.includes('carcinogen') ||
+            tagString.includes('neoplasia') || tagString.includes('leukemia') ||
+            tagString.includes('lymphoma') || tagString.includes('tumor') ||
+            tagString.includes('oncology')) {
+            return 'Oncology';
+        }
+        
+        // Infectious Disease
+        if (tagString.includes('infectious') || tagString.includes('bacteria') ||
+            tagString.includes('virus') || tagString.includes('fungal') ||
+            tagString.includes('gram_positive') || tagString.includes('gram_negative') ||
+            tagString.includes('hiv') || tagString.includes('tuberculosis') ||
+            tagString.includes('parasit') || tagString.includes('microbiology')) {
+            return 'Infectious Disease';
+        }
+        
+        // Psychiatry
+        if (tagString.includes('psych') || tagString.includes('depression') ||
+            tagString.includes('adhd') || tagString.includes('psychosis') ||
+            tagString.includes('substance_abuse') || tagString.includes('mental')) {
+            return 'Psychiatry';
+        }
+        
+        // Pathology
+        if (tagString.includes('pathology') || tagString.includes('inflammation') ||
+            tagString.includes('wound_healing') || tagString.includes('trauma')) {
+            return 'Pathology';
+        }
+        
+        // Biochemistry
+        if (tagString.includes('biochemistry') || tagString.includes('metabolism') ||
+            tagString.includes('enzyme') || tagString.includes('metabolic')) {
+            return 'Biochemistry';
+        }
+        
+        // Immunology
+        if (tagString.includes('immunology') || tagString.includes('immune') ||
+            tagString.includes('autoimmune') || tagString.includes('allergy') ||
+            tagString.includes('transplant')) {
+            return 'Immunology';
+        }
+        
+        // Genetics
+        if (tagString.includes('genetics') || tagString.includes('genetic') ||
+            tagString.includes('chromosom') || tagString.includes('hereditary') ||
+            tagString.includes('congenital')) {
+            return 'Genetics';
+        }
+        
+        // OBGYN
+        if (tagString.includes('obgyn') || tagString.includes('gynecology') ||
+            tagString.includes('pregnancy') || tagString.includes('reproductive') ||
+            tagString.includes('ovary') || tagString.includes('cervix') ||
+            tagString.includes('breast') || tagString.includes('uterus')) {
+            return 'OBGYN';
+        }
+        
+        // Pediatrics
+        if (tagString.includes('pediatric') || tagString.includes('child') ||
+            tagString.includes('infant') || tagString.includes('developmental')) {
+            return 'Pediatrics';
+        }
+        
+        // Dermatology
+        if (tagString.includes('dermatology') || tagString.includes('skin') ||
+            tagString.includes('dermat')) {
+            return 'Dermatology';
+        }
+        
+        // Emergency Medicine
+        if (tagString.includes('emergency') || tagString.includes('trauma') ||
+            tagString.includes('shock') || tagString.includes('cpr')) {
+            return 'Emergency Medicine';
+        }
+        
+        return 'General Medicine';
     }
 
     setupEventListeners() {
@@ -419,12 +550,14 @@ class QuizApp {
         let filteredFlashcards;
         if (selectedCategory) {
             filteredFlashcards = this.flashcards.filter(f => f.category === selectedCategory);
+            console.log(`Filtered to ${filteredFlashcards.length} flashcards for category "${selectedCategory}"`);
             if (filteredFlashcards.length === 0) {
                 alert(`No flashcards found for category "${selectedCategory}". Try selecting "All Categories" instead.`);
                 return;
             }
         } else {
             filteredFlashcards = [...this.flashcards];
+            console.log(`Using all ${filteredFlashcards.length} flashcards`);
         }
         
         this.currentFlashcards = this.shuffleArray(filteredFlashcards);
@@ -439,21 +572,6 @@ class QuizApp {
         this.showScreen('category-select');
     }
 
-    displayFlashcard() {
-        if (this.currentFlashcardIndex >= this.currentFlashcards.length) {
-            this.currentFlashcardIndex = 0; // Loop back to start
-        }
-        
-        const flashcard = this.currentFlashcards[this.currentFlashcardIndex];
-        this.showingFlashcardAnswer = false;
-        
-        document.getElementById('flashcard-category').textContent = flashcard.category;
-        document.getElementById('flashcard-text').innerHTML = flashcard.question;
-        document.getElementById('flashcard-answer').innerHTML = flashcard.answer;
-        document.getElementById('flashcard-answer').style.display = 'none';
-        document.getElementById('show-answer-btn').style.display = 'block';
-        document.getElementById('flashcard-nav').style.display = 'none';
-    }
 
     showFlashcardAnswer() {
         this.showingFlashcardAnswer = true;
@@ -476,6 +594,51 @@ class QuizApp {
             this.currentFlashcardIndex = 0;
         }
         this.displayFlashcard();
+    }
+
+    updateCategoryOptions() {
+        if (!this.flashcards || this.flashcards.length === 0) return;
+        
+        // Count flashcards by category
+        const categoryCounts = {};
+        this.flashcards.forEach(flashcard => {
+            const category = flashcard.category;
+            categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+        });
+        
+        // Update option text to include counts
+        const categorySelect = document.getElementById('category');
+        const options = categorySelect.querySelectorAll('option[value!=""]');
+        
+        options.forEach(option => {
+            const category = option.value;
+            const count = categoryCounts[category] || 0;
+            if (count > 0) {
+                option.textContent = `${category} (${count})`;
+                option.style.display = 'block';
+            } else {
+                option.style.display = 'none';
+            }
+        });
+        
+        console.log('Category distribution:', categoryCounts);
+    }
+
+    displayFlashcard() {
+        if (this.currentFlashcardIndex >= this.currentFlashcards.length) {
+            this.currentFlashcardIndex = 0; // Loop back to start
+        }
+        
+        const flashcard = this.currentFlashcards[this.currentFlashcardIndex];
+        this.showingFlashcardAnswer = false;
+        
+        document.getElementById('flashcard-category').textContent = 
+            `${flashcard.category} (${this.currentFlashcardIndex + 1}/${this.currentFlashcards.length})`;
+        document.getElementById('flashcard-text').innerHTML = flashcard.question;
+        document.getElementById('flashcard-answer').innerHTML = flashcard.answer;
+        document.getElementById('flashcard-answer').style.display = 'none';
+        document.getElementById('show-answer-btn').style.display = 'block';
+        document.getElementById('flashcard-nav').style.display = 'none';
     }
 }
 
