@@ -35,10 +35,10 @@ class StudySession {
     }
 
     startNewSession() {
-        const questionCount = parseInt(document.querySelector('input[name="questionCount"]:checked').value);
         const category = document.getElementById('categorySelect').value;
         
-        this.questions = questionBank.getRandomQuestions(questionCount, category || null);
+        // Get all questions from selected category (or all if none selected)
+        this.questions = questionBank.getRandomQuestions(50, category || null);
         this.currentQuestionIndex = 0;
         this.attempts = [];
         this.isReviewMode = false;
