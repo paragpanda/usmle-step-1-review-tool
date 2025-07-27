@@ -20,12 +20,18 @@ class QuizApp {
     async loadQuestions() {
         // First check if CONSOLIDATED_QUESTION_BANK is available (it should be)
         if (typeof CONSOLIDATED_QUESTION_BANK !== 'undefined' && CONSOLIDATED_QUESTION_BANK.length > 0) {
-            // Filter out malformed questions with incomplete options
-            this.allQuestions = CONSOLIDATED_QUESTION_BANK.filter(q => 
-                q.options && 
-                q.options.length >= 2 && 
-                q.options.every(opt => opt && opt.length > 3 && !opt.match(/^[A-E]\)$/))
-            );
+            // Filter out questions with clearly broken options, but be less strict
+            this.allQuestions = CONSOLIDATED_QUESTION_BANK.filter(q => {
+                if (!q.options || q.options.length < 2) return false;
+                
+                // Count how many options are just "A)", "B)", etc.
+                const malformedCount = q.options.filter(opt => 
+                    !opt || opt.match(/^[A-E]\)$/) || opt.trim().length < 2
+                ).length;
+                
+                // Keep question if less than half the options are malformed
+                return malformedCount < q.options.length / 2;
+            });
             console.log(`Loaded ${this.allQuestions.length} valid questions from unified-question-bank.js (filtered from ${CONSOLIDATED_QUESTION_BANK.length})`);
             return;
         }
