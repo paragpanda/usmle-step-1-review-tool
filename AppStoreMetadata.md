@@ -18,25 +18,21 @@ USMLE Step 1 flashcard study tool
 Master the USMLE Step 1 with our comprehensive flashcard review tool designed specifically for medical students. Our app features high-yield questions across all major medical specialties to help you succeed on exam day.
 
 **KEY FEATURES:**
-• 🎯 High-yield questions covering Cardiology, Gastroenterology, Endocrinology, Neurology, and more
+• 🎯 114 authentic questions from Mehlman Medical high-yield content
 • 📚 Smart flashcard interface with detailed explanations
 • 🔄 Intelligent review system that tracks incorrect answers
 • 📊 Progress tracking with real-time scoring
-• ⚙️ Customizable study sessions (5-25 questions)
-• 🏷️ Category filtering by medical specialty
+• 🎲 Randomized answer options to eliminate bias
+• 🏷️ Category-based study sessions covering all questions per topic
 • 💾 Offline functionality - study anywhere, anytime
 • 🔒 Complete privacy - all data stays on your device
 
-**MEDICAL SPECIALTIES COVERED:**
-✓ Cardiology - ECG interpretation, heart conditions
-✓ Gastroenterology - GI disorders, liver disease
-✓ Endocrinology - Diabetes, thyroid disorders
-✓ Neurology - CNS conditions, headache evaluation
-✓ Infectious Disease - Pathogens and treatments
-✓ Nephrology - Kidney disease, electrolytes
-✓ Pharmacology - Drug mechanisms, interactions
-✓ Pediatrics - Childhood conditions
-✓ Emergency Medicine - Acute care protocols
+**MEDICAL TOPICS COVERED:**
+✓ Medical Ethics & Communication - Patient consent, research ethics (65 questions)
+✓ Pharmacology - Drug mechanisms, pharmacokinetics (22 questions)
+✓ Clinical Medicine - Acid-base disorders, infectious diseases (21 questions)
+✓ Research & Statistics - Study design, epidemiology (4 questions)
+✓ Emergency Medicine - Acute care protocols (2 questions)
 
 **STUDY SMART:**
 Our adaptive review system automatically identifies questions you answered incorrectly, allowing you to focus your study time on areas that need improvement. Track your progress with detailed statistics and build confidence as you prepare for the USMLE Step 1.

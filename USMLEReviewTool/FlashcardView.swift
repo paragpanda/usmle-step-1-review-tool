@@ -4,10 +4,7 @@ struct FlashcardView: View {
     @StateObject private var studySession = StudySession()
     @StateObject private var questionBank = QuestionBank()
     @State private var showingSessionOptions = true
-    @State private var selectedQuestionCount = 10
     @State private var selectedCategory: String? = nil
-    
-    let questionCounts = [5, 10, 15, 20, 25]
     
     var body: some View {
         NavigationView {
@@ -27,28 +24,16 @@ struct FlashcardView: View {
                 .multilineTextAlignment(.center)
             
             VStack(spacing: 20) {
-                Text("Configure Your Study Session")
+                Text("Choose Your Study Topic")
                     .font(.title2)
                     .fontWeight(.semibold)
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("Number of Questions")
-                        .font(.headline)
-                    
-                    Picker("Question Count", selection: $selectedQuestionCount) {
-                        ForEach(questionCounts, id: \.self) { count in
-                            Text("\(count) questions").tag(count)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                
-                VStack(alignment: .leading, spacing: 15) {
-                    Text("Category (Optional)")
+                    Text("Select Category")
                         .font(.headline)
                     
                     Picker("Category", selection: $selectedCategory) {
-                        Text("All Categories").tag(nil as String?)
+                        Text("All Topics").tag(nil as String?)
                         ForEach(questionBank.getAllCategories(), id: \.self) { category in
                             Text(category).tag(category as String?)
                         }
@@ -331,7 +316,8 @@ struct FlashcardView: View {
             questionsToUse = questionBank.questions
         }
         
-        let selectedQuestions = Array(questionsToUse.shuffled().prefix(selectedQuestionCount))
+        // Use ALL questions from the selected category, shuffled
+        let selectedQuestions = questionsToUse.shuffled()
         studySession.startNewSession(with: selectedQuestions)
         showingSessionOptions = false
     }

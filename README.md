@@ -6,9 +6,9 @@ A comprehensive iOS flashcard application designed for USMLE Step 1 exam prepara
 
 ### 📚 Study Features
 - **Flashcard Interface**: Clean, intuitive question-answer format
-- **Multiple Question Banks**: 10 high-yield questions across major medical categories
-- **Category Filtering**: Study by specific topics (Cardiology, Gastroenterology, Endocrinology, etc.)
-- **Customizable Sessions**: Choose 5-25 questions per study session
+- **Authentic Question Bank**: 114 authentic questions from Mehlman Medical content
+- **Category Filtering**: Study by specific topics (Medical Ethics & Communication, Pharmacology, Clinical Medicine, etc.)
+- **Category-Based Sessions**: Study all questions from your chosen topic
 - **Progress Tracking**: Real-time scoring and completion tracking
 
 ### 🎯 Smart Review System
@@ -18,16 +18,12 @@ A comprehensive iOS flashcard application designed for USMLE Step 1 exam prepara
 - **Core Data Persistence**: Save progress across app sessions
 
 ### 🏥 Medical Content
-Based on high-yield USMLE Step 1 topics including:
-- **Cardiology**: MI diagnosis, ECG interpretation
-- **Gastroenterology**: Pancreatitis, liver disease
-- **Endocrinology**: Thyroid disorders, diabetes
-- **Neurology**: Headache evaluation, CNS disorders
-- **Infectious Disease**: Common pathogens and treatments
-- **Nephrology**: CKD complications, electrolyte disorders
-- **Pharmacology**: Drug mechanisms and interactions
-- **Pediatrics**: Common childhood conditions
-- **Emergency Medicine**: Acute care protocols
+Based on authentic Mehlman Medical high-yield USMLE Step 1 content:
+- **Medical Ethics & Communication**: Patient consent, research ethics, communication skills (65 questions)
+- **Pharmacology**: Drug mechanisms, pharmacokinetics, bioavailability (22 questions)
+- **Clinical Medicine**: Acid-base disorders, infectious diseases, clinical scenarios (21 questions)
+- **Research & Statistics**: Study design, epidemiology, research methods (4 questions)
+- **Emergency Medicine**: Acute care protocols, anaphylaxis treatment (2 questions)
 
 ## Technical Architecture
 
@@ -81,9 +77,9 @@ Based on high-yield USMLE Step 1 topics including:
 3. Build and run (⌘+R)
 
 ### Study Workflow
-1. **Configure Session**: Choose question count and category
-2. **Answer Questions**: Tap options to select answers
-3. **Review Results**: Read explanations for each question
+1. **Choose Topic**: Select category or study all topics
+2. **Answer Questions**: Tap options to select answers (randomized options eliminate bias)
+3. **Review Results**: Read detailed explanations for each question
 4. **Track Progress**: Monitor correct/total scores
 5. **Review Mistakes**: Use dedicated review mode for incorrect answers
 
